@@ -39,11 +39,46 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())          // bật CORS theo bean bên dưới
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST, "/customer", "/auth/login", "/auth/logout").permitAll()
-                .requestMatchers(HttpMethod.GET, "/product/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/supplier", "/category").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "/customer", "/product/all").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/customer/{customerID}", "/product/{productID}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, 
+                    "/product/**", 
+                    "/category/all", 
+                    "/customer/id/{customerID}",
+                    "/customer/myCart/**",
+                    "/customer/order",
+                    "/customer/myInfo"
+                ).permitAll()
+                .requestMatchers(HttpMethod.POST, 
+                    "/customer", 
+                    "/customer/addToCart", 
+                    "/customer/removeFromCart", 
+                    "/customer/order", 
+                    "/auth/login", 
+                    "/auth/logout", 
+                    "/product/searchByCategories"
+                ).permitAll()
+                .requestMatchers(HttpMethod.DELETE, 
+                    "/customer/{customerID}"
+                ).permitAll()
+                .requestMatchers(HttpMethod.PATCH,
+                    "/customer/{customerID}",
+                    "/customer/pass"
+                ).permitAll()
+                
+                .requestMatchers(HttpMethod.GET, 
+                    "/customer", 
+                    "/supplier/all"
+                ).hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, 
+                    "/supplier", 
+                    "/category", 
+                    "/product"
+                ).hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, 
+                    "/product/{productID}"
+                ).hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, 
+                    "/product/**"
+                ).hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2
