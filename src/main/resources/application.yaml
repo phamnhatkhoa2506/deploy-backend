@@ -7,9 +7,9 @@ jwt:
   signerKey: "UPhmqkJthfAVPl2XN1llEM3WbDagGGiP4J0lickNbsmjfWM2fpeSq9M9VCm4QxRd"
 spring:
   datasource:
-    url: ${DBMS_CONNECTION:jdbc:mysql://localhost:3306/supermarket}
+    url: ${DBMS_CONNECTION:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:supermarket}}
     username: "root"
-    password: "vonuhuyentran1202"
+    password: ${DB_PASSWORD}
     driver-class-name: "com.mysql.cj.jdbc.Driver"
   jpa:
     hibernate:
