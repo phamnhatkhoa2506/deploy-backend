@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = {"http://localhost:5173", "https://pbl3-frontend-kohl.vercel.app"})
 public class ProductController {
     @Autowired
     private ProductService productService;

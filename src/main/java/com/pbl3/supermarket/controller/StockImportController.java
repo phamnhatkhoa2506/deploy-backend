@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/import")
+@CrossOrigin(origins = {"http://localhost:5173", "https://pbl3-frontend-kohl.vercel.app"})
 public class StockImportController {
     private final StockImportService stockImportService;
 

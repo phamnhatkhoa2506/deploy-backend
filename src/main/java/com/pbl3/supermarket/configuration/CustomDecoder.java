@@ -20,7 +20,7 @@ import java.text.ParseException;
 import java.util.Objects;
 
 @Component
-public class CustomDecoder  implements JwtDecoder {
+public class CustomDecoder implements JwtDecoder {
     @Value("${jwt.signerKey}")
     private String signerKey;
 

@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin(origins = {"http://localhost:5173", "https://pbl3-frontend-kohl.vercel.app"})
 public class CustomerController {
     @Autowired
     CustomerService customerService;

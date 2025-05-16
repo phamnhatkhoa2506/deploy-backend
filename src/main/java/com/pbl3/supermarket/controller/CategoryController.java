@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin(origins = {"http://localhost:5173", "https://pbl3-frontend-kohl.vercel.app"})
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;

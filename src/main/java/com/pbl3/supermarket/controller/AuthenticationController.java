@@ -1,6 +1,5 @@
 package com.pbl3.supermarket.controller;
 
-
 import com.nimbusds.jose.JOSEException;
 import com.pbl3.supermarket.dto.request.AuthenticationRequest;
 import com.pbl3.supermarket.dto.request.IntrospectRequest;
@@ -20,6 +19,7 @@ import java.text.ParseException;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = {"http://localhost:5173", "https://pbl3-frontend-kohl.vercel.app"})
 public class AuthenticationController {
 
     AuthenticationService authenticationService;
@@ -33,6 +33,7 @@ public class AuthenticationController {
                 .result(authenticationResponse)
                 .build();
     }
+
     @PostMapping("/introspect")
     public ApiResponse<IntrospectResponse> login(@RequestBody IntrospectRequest introspectRequest) throws ParseException, JOSEException {
         return ApiResponse.<IntrospectResponse>builder()
